@@ -24,7 +24,7 @@ total = 0
 
 for line in fh:
     if not line.startswith("X-DSPAM-Confidence:") : continue
-
+    #print(line)
     colon = line.find(':')
     value = float(line[colon+1:].strip())
     total = total + value
