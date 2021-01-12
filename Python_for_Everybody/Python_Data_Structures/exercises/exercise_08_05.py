@@ -19,12 +19,21 @@ if len(fname) < 1 : fname = "mbox-short.txt"
 fh = open(fname)
 count = 0
 
-for line in fh:
-    line = line.strip()
-    if not line.startswith('From '): continue
-    words = line.split()
-    email = words[1]
-    print(email)
-    count += 1
+# for line in fh:
+#     line = line.strip()
+#     if not line.startswith('From '): continue
+#     words = line.split()
+#     email = words[1]
+#     print(email)
+#     count += 1
 
-print("There were", count, "lines in the file with From as the first word")
+# print("There were", count, "lines in the file with From as the first word")
+
+
+for line in fh:
+    line = line.rstrip()
+    wds = line.split()
+
+    if wds[0] != 'From' or len(wds) < 3:
+        continue
+    print(wds[2])
