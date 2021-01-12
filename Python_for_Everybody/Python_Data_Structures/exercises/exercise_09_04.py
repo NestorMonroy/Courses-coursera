@@ -8,38 +8,33 @@
     the dictionary using a maximum loop to find the most prolific committer.
 
 """
+fname = input('Enter file name: ')
+if len(fname) < 1 : fname = 'mbox-short.txt'
+handle = open(fname)
 
-name = input("Enter file:")
-if len(name) < 1 : name = "mbox-short.txt"
-handle = open(name)
-
-dictsemail = dict()
-lst = list()
+elist = []
+edict = {}
 
 for line in handle:
+    line = line.strip()
     if not line.startswith('From ') : continue
-    line = line.split()
-    email = line[1]
-    lst.append(email)
+    words = line.split()
+    email = words[1]
+    elist.append(email)
 
-#print(lst)
+#print(elist)
 
-for word in lst:
-    dictsemail[word] = dictsemail.get(word, 0) + 1
+for email in elist:
+    edict[email] = edict.get(email, 0) + 1
 
-#print(dictsemail)
+#print(edict)
 
+bigkey = None
+bigvalue = None
 
-bigcount = None
-bigword = None
+for key, value in edict.items():
+    if bigkey is None or value > bigvalue:
+        bigkey = key
+        bigvalue = value
 
-for key, values in dictsemail.items():
-    if bigcount is None or values > bigcount:
-        bigword = key
-        bigcount = values
-
-print(bigword, bigcount)
-
-
-
-
+print(bigkey, bigvalue)
