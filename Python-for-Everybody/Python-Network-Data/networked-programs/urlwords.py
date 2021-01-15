@@ -1,12 +1,12 @@
 import urllib.request as request
 
-man_a = request.urlopen('http://data.pr4e.org/romeo.txt')
+fhand = request.urlopen('http://data.pr4e.org/romeo.txt')
 
-contador = {}
+counts = {}
 
-for linea in man_a:
-    words = linea.decode().split()
+for line in fhand:
+    words = line.decode().split()
     for word in words:
-        contador[word] = contador.get(word, 0) + 1
+        contador[word] = counts.get(word, 0) + 1
 
-print(contador)
+print(counts)

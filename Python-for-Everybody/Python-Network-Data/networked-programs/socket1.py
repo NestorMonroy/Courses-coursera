@@ -10,18 +10,21 @@
     a recv() devuelve una cadena vacía
 
     encode() y decode() convierten cadenas en objectos binarios y viceversa
-    
+    decode() metodo en la clase bytes
+
+    enconde() -> send
+    decode() -> recv
 """
 
 import socket
 
 misock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-misock.connect(('data.pr4e.org', 80))
+misock.connect(('data.pr4e.org', 80)) # read a file
 cmd = 'GET http://data.pr4e.org/romeo.txt HTTP/1.0\r\n\r\n'.encode()
 misock.send(cmd)
 
 while True:
-    datos = misock.recv(512)
+    datos = misock.recv(512) #reads the data
     if len(datos) < 1:
         break
     print(datos.decode(), end='')

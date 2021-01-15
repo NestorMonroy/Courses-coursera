@@ -4,9 +4,9 @@
     todos los detalles referentes al protocolo HTTP y a la cabecera
 """
 
-import urllib.request as request
+from urllib.request import urlopen
 
-man_a = request.urlopen('http://data.pr4e.org/romeo.txt')
+fhand = urlopen('http://data.pr4e.org/romeo.txt')
 
-for linea in man_a:
-    print(linea.decode().strip())
+for line in fhand:
+    print(line.decode().strip())
