@@ -6,7 +6,7 @@
 
     Existe un buffer entre el servidor que hace las peticiones send()y nuestra aplicación que hace las peticiones recv(). 
 
-    La detención de la aplicación que envía los datos o de la que los recibe se llama“control de flujo”.
+    La detención de la aplicación que envía los datos o de la que los recibe se llama “control de flujo”.
 """
 
 import socket
@@ -56,5 +56,5 @@ fhand.close()
     Los resultados pueden variar dependiendo de tu velocidad de internet. Además, observa que en la última llamada a recv()
     obtenemos 3167 bytes, lo cual es el final de la cadena, y en la siguiente llamada a recv() obtenemos una cadena de longitud 
     cero que indica que el servidor ya ha llamado close() en su lado del socket, y por lo tanto no quedan más datos pendientes 
-    por recibir/
+    por recibir
 """

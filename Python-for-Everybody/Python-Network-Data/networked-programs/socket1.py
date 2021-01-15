@@ -1,14 +1,15 @@
 """
     El programa realiza una conexion al puerto 80 del servidor www.py4e.com
-    Puesto que nuestro programa esta jugando el rol de "navegador web", el protocolo
+    ya que nuestro programa esta jugando el rol de "navegador web", el protocolo
     HTTP dice que debemos enviar el comando GET seguido de una linea en blanco.
     \r\n => representan un salto de linea (EOL)
     \r\n\r\n => significa que no hay nada entre dos secuencias de salto de linea, Eso es equivalente de una linea en blanco
 
     Una vez que enviamos esa linea en blanco, escribimos un bucle que recibe los datos desde el socket 
-    en bloques de 512 caracteres y los imprime en la pantalla hasta que no quedan mas datos por leer la llamada a recv() devuelve una cadena vacía
+    en bloques de 512 caracteres y los imprime en la pantalla hasta que no quedan mas datos por leer la llamada 
+    a recv() devuelve una cadena vacía
 
-    encode() y decode()convierten cadenas en objectos binarios y viceversa
+    encode() y decode() convierten cadenas en objectos binarios y viceversa
     
 """
 

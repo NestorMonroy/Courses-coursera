@@ -22,7 +22,7 @@ ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-url = input('Indroduzca - ') # https://docs.python.org
+url = input('Introduzca - ') # https://docs.python.org
 html = urllib.request.urlopen(url).read()
 enlaces = re.findall(b'href="(http[s]?://.*?)"', html)
 

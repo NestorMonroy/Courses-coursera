@@ -47,7 +47,7 @@ y = re.findall('@([^ ]*)', data)
 
 #Event cooler Regex Version
 
-# . => Skip a bunch of characteres, @ => looking for an at sing
+# . => Skip a bunch of characteres, @ => looking for an at string
 lin = 'From blabla stephen.marquard@uct.ac.za Sat Jan  5 09:14:16 2008'
 y = re.findall('^From .*@([^ ]*)',lin)
 print(y)
