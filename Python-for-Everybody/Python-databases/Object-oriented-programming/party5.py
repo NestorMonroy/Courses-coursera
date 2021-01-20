@@ -2,8 +2,8 @@ class PartyAnimal:
     x = 0
     name = ''
 
-    def __init__(self, nam):
-        self.name = nam
+    def __init__(self, z):
+        self.name = z
         print(self.name, 'constructed')
 
     def party(self):
