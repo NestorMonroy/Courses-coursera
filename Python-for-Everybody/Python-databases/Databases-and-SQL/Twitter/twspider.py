@@ -27,13 +27,13 @@ ctx.verify_mode = ssl.CERT_NONE
 while True:
     # Si el usuario introduce una cuenta de TW, recuperamos la lista de amigos de ese usuario junto con sus estados y añadimos cada amigo a la base de datos (si no esta en ella)
     # Si el amigo ya estaba en la lista, enumeramos en 1 el campo friends en la fila correspondiente de la base de datos
-    # Si el usuario presiona intro, buscamos en la base de datos la siguiete cuenta de TW que no haya sido aun recuperada, recuperamos los amigos de esa cuenta junto con sus estados y los anadidos a la base de datos o los actualizamos, e incrementamos el contador del campo friends
+    # Si el usuario presiona intro, buscamos en la base de datos la siguiente cuenta de TW que no haya sido aun recuperada, 
+    # recuperamos los amigos de esa cuenta junto con sus estados y los anadidos a la base de datos o los actualizamos, e incrementamos el contador del campo friends
 
     acct = input('Enter a Twitter account, or quit: ')
     if (acct == 'quit'): break
     if (len(acct) < 1):
-        # Como hemos pulsado intro (es decir, no hemos especificado otra cuenta de Twitter),
-        # se ha ejecutado el código siguiente:
+        # Como hemos pulsado intro (es decir, no hemos especificado otra cuenta de Twitter)
         # Usamos la sentencia de SQLSELECT para obtener el nombre del primer usuario(LIMIT 1) 
         # que aún tiene su valor de “hemos recuperado ya este usuario” a cero.
         cur.execute('SELECT name FROM Twitter WHERE retrieved = 0 LIMIT 1')
@@ -62,11 +62,11 @@ while True:
     # print json.dumps(js, indent=4)
 
     # Una vez recuperados correctamente los datos, usamos la sentencia UPDATE para poner la 
-    # columna recuperado a 1, lo que indica que hemos terminado la extracción de amigos de 
+    # columna retrieved a 1, lo que indica que hemos terminado la extracción de amigos de 
     # esa cuenta. Esto impide que recuperemos los mismos datos una y otra vez, y nos permite 
     # ir avanzando a través de la red de amigos de Twitter
 
-    
+
     cur.execute('UPDATE Twitter SET retrieved=1 WHERE name = ?', (acct, ))
 
     # Una vez recuperado la lista de amigos y sus estados, nos movemos a traves de los elementos 
