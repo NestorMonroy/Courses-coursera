@@ -23,6 +23,7 @@ TWITTER_URL = 'https://api.twitter.com/1.1/friends/list.json'
 conn = sqlite3.connect('friends.sqlite')
 cur = conn.cursor()
 
+#Cuando elegimos INTEGER PRIMARY KEY como el tipo de columna id, estamos indicando que queremos que SQLite controle esta columna y asigne autimaticamente una clave numerica unica para cada fila
 cur.execute('''CREATE TABLE IF NOT EXISTS People
             (id INTEGER PRIMARY KEY, name TEXT UNIQUE, retrieved INTEGER)''') #Estamos indicando que la columna name debe ser UNIQUE
 cur.execute('''CREATE TABLE IF NOT EXISTS Follows
@@ -46,7 +47,7 @@ while True:
     else:
         """
             Cuando pedimos al usuario una cuenta de TW, si la cuenta existe debemos de averiguar 
-            el valor del id  (id = cur.fetchone()[0]), si la cuenta no exite en la tabla People debemos
+            el valor del id  (id = cur.fetchone()[0]), si la cuenta no existe en la tabla People debemos
             de inserta el valor (INSERT OR IGNORE INTO People) y obtener el valor del id de la ultima 
             fila insertada  (id = cur.lastrowid)
 
@@ -66,6 +67,7 @@ while True:
 
     url = twurl.augment(TWITTER_URL, {'screen_name': acct, 'count': '100'})
     print('Retrieving account', acct)
+    print('Retieving dara', url)
     try:
         connection = urllib.request.urlopen(url, context=ctx)
     except Exception as err:
@@ -85,7 +87,7 @@ while True:
         break
 
     # Debugging
-    # print(json.dumps(js, indent=4))
+    #print(json.dumps(js, indent=4))
 
     if 'users' not in js:
         print('Incorrect JSON received')
@@ -111,7 +113,7 @@ while True:
             if cur.rowcount != 1:
                 print('Error inserting account:', friend)
                 continue
-            friend_id = cur.lastrowid
+            friend_id = cur.lastrowid #Con esto averiguamos el valor que la base de datos ha asignado a la columa id en nuestra fila recien creada
             countnew = countnew + 1
         cur.execute('''INSERT OR IGNORE INTO Follows (from_id, to_id)
                     VALUES (?, ?)''', (id, friend_id)) #Se asegura que no anademos exactamente la misma relacion dos veces, se le indica a la base de datos que ignore cualquier intento de INSERT si viola la regla
