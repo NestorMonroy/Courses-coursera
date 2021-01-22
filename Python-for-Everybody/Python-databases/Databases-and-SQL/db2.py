@@ -16,9 +16,9 @@ for row in cur:
 cur.execute('UPDATE Tracks SET plays = 16 WHERE title ="My Way"' )
 conn.commit()
 cur.execute('SELECT title, plays FROM Tracks')
-for row in cur:
-    print(row)
-cur.execute('DELETE FROM Tracks WHERE plays < 100')
-conn.commit()
+# for row in cur:
+#     print(row)
+# cur.execute('DELETE FROM Tracks WHERE plays < 100')
+# conn.commit()
 cur.close()
 
