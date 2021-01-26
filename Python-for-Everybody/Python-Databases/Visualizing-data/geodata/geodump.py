@@ -1,0 +1,52 @@
+""" 
+    Este programa lee la base de datos y escribe el archivo where.js con la ubicacion, latitud, longitud en forma de codigo ejecutable JavaScript
+"""
+import sqlite3
+import json
+import codecs
+
+conn = sqlite3.connect('geodata.sqlite')
+cur = conn.cursor()
+
+cur.execute('SELECT * FROM Locations')
+fhand = codecs.open('where.js', 'w', "utf-8")
+fhand.write("myData = [\n")
+count = 0
+for row in cur :
+    data = str(row[1].decode())
+    try: js = json.loads(str(data))
+    except: continue
+
+    if not('status' in js and js['status'] == 'OK') : continue
+
+    lat = js["results"][0]["geometry"]["location"]["lat"]
+    lng = js["results"][0]["geometry"]["location"]["lng"]
+    if lat == 0 or lng == 0 : continue
+    where = js['results'][0]['formatted_address']
+    where = where.replace("'", "")
+    
+    # with open('where.json', 'a') as fp:
+    #     #json_string = json.dumps(js, default=lambda o: o.__dict__, sort_keys=True, indent=2)
+    #     json_string = json.dumps(js, indent=4)
+    #     fp.write( ',' +json_string)
+    #     #print(js)
+    #     #print(json_string)
+        
+    try :
+        #print(where, lat, lng)
+
+        count = count + 1
+        if count > 1 : fhand.write(",\n")
+        output = "["+str(lat)+","+str(lng)+", '"+where+"']"
+        fhand.write(output)
+    except:
+        continue
+    
+
+fhand.write("\n];\n")
+#writeToJSONFile('./','file-name',data)
+cur.close()
+fhand.close()
+print(count, "records written to where.js")
+print("Open where.html to view the data in a browser")
+
