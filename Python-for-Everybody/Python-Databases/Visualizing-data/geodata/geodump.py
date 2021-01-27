@@ -33,7 +33,7 @@ for row in cur :
     #     #print(json_string)
         
     try :
-        #print(where, lat, lng)
+        print(where, lat, lng)
 
         count = count + 1
         if count > 1 : fhand.write(",\n")
