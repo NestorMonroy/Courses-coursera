@@ -8,8 +8,7 @@ from .models import Question, Choice
 
 
 def owner(request):
-    return HttpResponse("Hello, world. 99407a87 is the polls index.")
-
+    return HttpResponse("Hello, world. 767d3dd2  is the polls owner.")
 
 #La vista genérica DetailView utiliza una plantilla llamada <app name>/<model name>_detail.html  "polls/question_detail.html" al igual que la vista genérica ListView utiliza una plantilla predeterminada llamada <app name>/<model name>_list.html; 
 #El atributo template_name se utiliza para indicarle a Django que utilice un nombre de plantilla específico en vez del nombre de plantilla generado de forma automática.
