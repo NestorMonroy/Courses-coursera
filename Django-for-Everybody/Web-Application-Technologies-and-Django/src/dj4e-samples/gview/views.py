@@ -1,5 +1,4 @@
 from gview.models import Cat, Dog, Horse, Car
-
 from django.views import View
 from django.shortcuts import render
 
