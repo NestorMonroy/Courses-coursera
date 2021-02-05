@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render
 from django.views import View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -36,7 +36,7 @@ class MakeUpdate(LoginRequiredMixin, UpdateView):
 
 
 class MakeDelete(LoginRequiredMixin, DeleteView):
-    model = Auto
+    model = Make
     fields = '__all__'
     success_url = reverse_lazy('autos:all')
 

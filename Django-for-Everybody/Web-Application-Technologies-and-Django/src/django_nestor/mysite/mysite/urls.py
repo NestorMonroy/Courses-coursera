@@ -28,12 +28,13 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='home/main.html')),
     path('admin/', admin.site.urls),
     path('polls/', include('polls.urls')),
+    path('hello/', include('hello.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('autos/', include('autos.urls')),
+    path('cats/', include('cats.urls')),
+
     url(r'^site/(?P<path>.*)$', serve,
         {'document_root': SITE_ROOT, 'show_indexes': True},
         name='site_path'
     ),
-    path('hello/', include('hello.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),  # Add
-    path('autos/', include('autos.urls')),                   # Add
-
 ]
