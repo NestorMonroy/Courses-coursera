@@ -1,11 +1,10 @@
+https://nestorio.pythonanywhere.com/
 
 cd ...wherever...
 cd django_nestor
 pip3 install -r requirements.txt
 python3 manage.py migrate
 python3 manage.py createsuperuser --username root
-# python3 manage.py changepassword root
-# dj4e_nn_!
 python3 manage.py runscript gview_load
 python3 manage.py runscript many_load
 
