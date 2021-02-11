@@ -21,7 +21,6 @@ class AdListView(View):
     model = Ad
     # By convention:
     template_name = "ads/ad_list.html"
-    #template_name = "favs/list.html"
 
     def get(self, request):
         ad_list = Ad.objects.all()
