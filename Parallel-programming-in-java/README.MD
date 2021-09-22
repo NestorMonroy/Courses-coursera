@@ -21,3 +21,11 @@ $ mvn test
 Testing with Maven from IntelliJ
 
 Running the JUnit tests provided with this project is very simple to do from IntelliJ. Open the Maven Projects pane by navigating to View > Tool Windows > Maven Projects. From the Maven Projects pane, expand the Lifecycle section and double-click "test" to automatically run the tests (shown below). The output of the tests will be displayed in a separate text pane.
+
+### PCDP 
+
+https://github.com/habanero-rice/pcdp
+
+contains APIs (application programming interfaces) that directly support async and finish constructs so that you can use them in real code as well. In the next lecture, you will learn how to to implement the async and finish functionality using Java’s standard Fork/Join (FJ) framework.
+
+https://en.wikipedia.org/wiki/Asynchronous_method_invocation
